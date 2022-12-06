@@ -19,8 +19,13 @@ use App\Http\Controllers\InventoryController;
 //     return $request->user();
 // });
 
-Route::post('/inventory',[InventoryController::class,'create']);
-Route::get('/inventory',[InventoryController::class,'show']);
-Route::get('/inventory{id}',[InventoryController::class,'showByID']);
-Route::put('/inventory{id}',[InventoryController::class,'update']);
-Route::delete('/inventory{id}',[InventoryController::class,'delete']);
+Route::post('test',function(){
+    return "Test";
+});
+
+Route::post('inventory',[InventoryController::class,'create']);
+Route::get('/inventoryAll',[InventoryController::class,'show']);
+Route::get('/inventoryShow/{id?}',[InventoryController::class,'showByID']);
+Route::put('/inventoryUpdate/{id}',[InventoryController::class,'update']);
+Route::delete('/inventoryDelete/{id}',[InventoryController::class,'delete']);
+

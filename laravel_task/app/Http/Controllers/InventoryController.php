@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Inventory;
+use App\Models\Inventory;
 
 class InventoryController extends Controller
 {
+    
     public function create(Request $request){
+        // dd(
+        //     "hello"
+        // );
         
         $data=$request->validate([
             'name'=>'required|string|max:255',
@@ -36,7 +40,7 @@ class InventoryController extends Controller
     public function showById(Request $request, $id){
         $showById=Inventory::find($id);
         if ($showById) {  
-            return reponse()->json([
+            return response()->json([
                 'status'=>true,
                 'message'=>"Inventory Found",
                 'data'=>$showById
@@ -55,20 +59,22 @@ class InventoryController extends Controller
 
     public function update(Request $request, $id){
 
+        
         $update=Inventory::find($id);
         if ($update) {
-            $data=$request->validate([
-                'name'=>'required|string|max:255',
-                'quantity'=>'required',
-                'price'=>'required',
-                'category'=>'required',
-            ]);
-            $insert=Inventory::create($data);
-            $insert->save();
+            // $data=$request->validate([
+            //     'name'=>'required|string|max:255',
+            //     'quantity'=>'required',
+            //     'price'=>'required',
+            //     'category'=>'required',
+            // ]);
+            // $insert=Inventory::create($data);
+            // $insert->save();
+            $update->update($request->all());
             return  response()->json([
                 'status'=>true,
                 'message'=>'Record Found and Updated Successfully',
-                'data'=>$data,
+                'data'=>$update,
             ]);
         } else {
             return  response()->json([
